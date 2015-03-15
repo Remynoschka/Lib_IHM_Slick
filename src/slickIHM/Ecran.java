@@ -30,7 +30,11 @@ public abstract class Ecran extends BasicGameState implements IHMConteneur {
 	public Ecran() {
 		composants = new ArrayList<>();
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+	 */
 	@Override
 	public void render(GameContainer container, StateBasedGame jeu, Graphics g)
 			throws SlickException {
@@ -77,6 +81,10 @@ public abstract class Ecran extends BasicGameState implements IHMConteneur {
 		leaveBehaviour();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#addComponent(slickIHM.IHMComponent)
+	 */
 	@Override
 	public void addComponent(IHMComponent element) {
 		composants.add(element);
@@ -89,28 +97,62 @@ public abstract class Ecran extends BasicGameState implements IHMConteneur {
 		element.setConteneur(null);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#getComponents()
+	 */
 	@Override
 	public List<IHMComponent> getComponents() {
 		return composants;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#getX()
+	 */
 	@Override
 	public int getX() {
 		return 0;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#getY()
+	 */
 	@Override
 	public int getY() {
 		return 0;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#getWidth()
+	 */
 	@Override
 	public int getWidth() {
-		return Fenetre.FENETRE.getWidth();
+		return Fenetre.getInstance().getWidth();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#getHeight()
+	 */
 	@Override
 	public int getHeight() {
-		return Fenetre.FENETRE.getHeight();
+		return Fenetre.getInstance().getHeight();
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see slickIHM.IHMConteneur#someoneHasFocus()
+	 */
+	@Override
+	public boolean someoneHasFocus() {
+		for (IHMComponent fils : composants) {
+			if (fils.hasFocus())
+				return true;
+		}
+		return false;
+	}
+	
 }

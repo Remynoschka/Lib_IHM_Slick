@@ -9,6 +9,8 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 /**
+ * Cette classe permet d'obtenir des informations sur l'environnement
+ * d'affichage
  * 
  * @author Remynoschka
  */
@@ -29,7 +31,7 @@ public class ConfigMonitors {
 	/**
 	 * Methode qui permet d'obtenir la configuration locale
 	 * 
-	 * @return la Configuration ou null si d�j� invoqu�
+	 * @return la Configuration ou null si deja invoquee
 	 * 
 	 */
 	public static ConfigMonitors getConfiguration() {

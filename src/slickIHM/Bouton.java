@@ -15,14 +15,35 @@ import org.newdawn.slick.gui.GUIContext;
  * @author Remynoschka
  * 
  */
-public class Bouton extends IHMComponent {
+public class Bouton extends AbstractIHMComponent {
+	/**
+	 * Le texte du bouton
+	 */
 	private String		texte		= "";
+	/**
+	 * L'action effectuee lors de l'appui du bouton
+	 */
 	private Action		action;
+	/**
+	 * Le raccourcis clavier
+	 */
 	private int			mnemonic	= -1;
+	/**
+	 * Couleur du texte
+	 */
 	private Color		texteColor	= Color.black;
+	/**
+	 * Police du texte
+	 */
 	private Font		texteFont;
 	// TODO taille des boutons (y'a mieux, tu verra plus tard)
+	/**
+	 * Largeur des boutons prochainement crees
+	 */
 	private static int	WIDTH		= 100;
+	/**
+	 * Hauteur des boutons prochainement crees
+	 */
 	private static int	HEIGHT		= 50;
 
 	/**
@@ -34,8 +55,8 @@ public class Bouton extends IHMComponent {
 	 * @param texte
 	 *            : le texte du bouton
 	 * @param a
-	 *            : l'action executee au clic
-	 * @param etat
+	 *            : l'action executee au clic sur le bouton
+	 * @param ecran
 	 *            : l'ecran auquel appartient le bouton
 	 * @param mnemonic
 	 *            : le raccourcis clavier
@@ -58,7 +79,7 @@ public class Bouton extends IHMComponent {
 	 *            : le texte du bouton
 	 * @param a
 	 *            : l'action executee au clic
-	 * @param etat
+	 * @param ecran
 	 *            : l'ecran auquel appartient le bouton
 	 * @throws SlickException
 	 */
@@ -68,6 +89,16 @@ public class Bouton extends IHMComponent {
 		build(fenetre, x, y, texte, a, ecran);
 	}
 
+	/**
+	 * Cette methode centralise la construction du bouton
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param texte
+	 * @param a
+	 * @param ecran
+	 */
 	private void build(Fenetre fenetre, int x, int y, String texte, Action a,
 			Ecran ecran) {
 		this.texte = texte;
@@ -75,14 +106,27 @@ public class Bouton extends IHMComponent {
 		texteFont = fenetre.getGraphics().getFont();
 	}
 
+	/**
+	 * Definit l'action effectue par ce bouton
+	 * 
+	 * @param action
+	 */
 	public void setAction(Action action) {
 		this.action = action;
 	}
 
+	/**
+	 * Cette methode definit la touche activant ce bouton
+	 * 
+	 * @param mnemonic
+	 */
 	public void setMnemonic(int mnemonic) {
 		this.mnemonic = mnemonic;
 	}
 
+	/**
+	 * Cette methode lance l'action du bouton
+	 */
 	public void doAction() {
 		if (action != null)
 			action.actionPerformed();
@@ -91,6 +135,13 @@ public class Bouton extends IHMComponent {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * slickIHM.AbstractIHMComponent#doRender(org.newdawn.slick.gui.GUIContext,
+	 * org.newdawn.slick.Graphics)
+	 */
 	@Override
 	public void doRender(GUIContext fenetre, Graphics g) {
 		super.doRender(fenetre, g);
@@ -105,6 +156,11 @@ public class Bouton extends IHMComponent {
 				- g.getFont().getHeight(texte) / 2);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.AbstractIHMComponent#actionKeyReleased(int, char)
+	 */
 	@Override
 	public void actionKeyReleased(int key, char c) {
 		if (key == this.mnemonic) {
@@ -112,6 +168,11 @@ public class Bouton extends IHMComponent {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.AbstractIHMComponent#actionMouseClicked(int, int, int, int)
+	 */
 	@Override
 	public void actionMouseClicked(int button, int x, int y, int clickCount) {
 		doAction();
@@ -121,6 +182,7 @@ public class Bouton extends IHMComponent {
 	 * Modifie la couleur du texte sur le bouton
 	 * 
 	 * @param texteColor
+	 *            : la couleur du texte
 	 */
 	public void setTexteColor(Color texteColor) {
 		this.texteColor = texteColor;
@@ -130,6 +192,7 @@ public class Bouton extends IHMComponent {
 	 * Modifie la police du texte sur le bouton
 	 * 
 	 * @param texteFont
+	 *            : la police du texte
 	 */
 	public void setTexteFont(Font texteFont) {
 		this.texteFont = texteFont;
@@ -159,6 +222,8 @@ public class Bouton extends IHMComponent {
 	}
 
 	/**
+	 * Cette methode permet de savoir quel est actuellement la largeur des
+	 * boutons prochainement crees
 	 * 
 	 * @return la largeur des boutons
 	 */
@@ -167,6 +232,8 @@ public class Bouton extends IHMComponent {
 	}
 
 	/**
+	 * Cette methode permet de savoir quel est actuellement la hauteur des
+	 * boutons prochainement crees
 	 * 
 	 * @return la hauteur des boutons
 	 */
@@ -174,16 +241,37 @@ public class Bouton extends IHMComponent {
 		return HEIGHT;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.newdawn.slick.gui.MouseOverArea#setNormalImage(org.newdawn.slick.
+	 * Image)
+	 */
 	@Override
 	public void setNormalImage(Image image) {
 		super.setNormalImage(image.getScaledCopy(WIDTH, HEIGHT));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.newdawn.slick.gui.MouseOverArea#setMouseOverImage(org.newdawn.slick
+	 * .Image)
+	 */
 	@Override
 	public void setMouseOverImage(Image image) {
 		super.setMouseOverImage(image.getScaledCopy(WIDTH, HEIGHT));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.newdawn.slick.gui.MouseOverArea#setMouseDownImage(org.newdawn.slick
+	 * .Image)
+	 */
 	@Override
 	public void setMouseDownImage(Image image) {
 		super.setMouseDownImage(image.getScaledCopy(WIDTH, HEIGHT));

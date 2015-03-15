@@ -7,10 +7,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.GUIContext;
+import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
 import slickIHM.Action;
 import slickIHM.Bouton;
+import slickIHM.ChampPassword;
+import slickIHM.ChampTexte;
 import slickIHM.Checkbox;
 import slickIHM.Ecran;
 import slickIHM.Fenetre;
@@ -27,7 +30,7 @@ import slickIHM.ToggleBouton;
  */
 public class EcranTest1 extends Ecran {
 	private Popup	p;
-
+	TextField tf;
 	@Override
 	public void init(GameContainer fenetre, StateBasedGame jeu)
 			throws SlickException {
@@ -70,7 +73,7 @@ public class EcranTest1 extends Ecran {
 				- Bouton.getButtonHeight(), "close", new Action() {
 			@Override
 			public void actionPerformed() {
-				p.close();
+				p.close(EcranTest1.this);
 				System.out.println("Close Popup Button");
 			}
 
@@ -79,7 +82,6 @@ public class EcranTest1 extends Ecran {
 		closePopup.setMouseOverImage(new Image("./data/over.png"));
 		closePopup.setMouseDownImage(new Image("./data/click.png"));
 		p.addComponent(closePopup);
-		addComponent(p);
 		// On fait un grand bouton qui fera apparaitre la popup
 		Bouton.setDimensions(300, 200);
 		Bouton b2 = new Bouton((Fenetre) fenetre, 0, 100, "Bouton\ngrand",
@@ -87,6 +89,7 @@ public class EcranTest1 extends Ecran {
 
 					@Override
 					public void actionPerformed() {
+						addComponent(p);
 						System.out.println("Gros bouton");
 						p.show(EcranTest1.this);
 					}
@@ -131,41 +134,60 @@ public class EcranTest1 extends Ecran {
 		// quelques checkbox
 		Checkbox c1 = new Checkbox((Fenetre) fenetre, 200, 200, this, "c1",
 				null, Checkbox.TXT_POS_DOWN);
-		c1.setNormalImg(new Image("./data/normal.png"));
-		c1.setOverImg(new Image("./data/over.png"));
-		c1.setCheckedImg(new Image("./data/click.png"));
-		c1.setClickedImg(new Image("./data/click.png"));
-		c1.setCheckedOverImg(new Image("./data/click.png"));
-		c1.setCheckedClickedImg(new Image("./data/click.png"));
+		c1.setNormalImg(new Image("./data/checkNormal.png"));
+		c1.setOverImg(new Image("./data/checkOver.png"));
+		c1.setCheckedImg(new Image("./data/checkChecked.png"));
+		c1.setClickedImg(new Image("./data/checkClicked.png"));
+		c1.setCheckedOverImg(new Image("./data/checkCheckedOver.png"));
+		c1.setCheckedClickedImg(new Image("./data/checkCheckedClicked.png"));
+
 		Checkbox c2 = new Checkbox((Fenetre) fenetre, 400, 200, this, "c2",
 				null, Checkbox.TXT_POS_UP);
-		c2.setNormalImg(new Image("./data/normal.png"));
-		c2.setOverImg(new Image("./data/over.png"));
-		c2.setCheckedImg(new Image("./data/click.png"));
-		c2.setClickedImg(new Image("./data/click.png"));
-		c2.setCheckedOverImg(new Image("./data/click.png"));
-		c2.setCheckedClickedImg(new Image("./data/click.png"));
+		c2.setNormalImg(new Image("./data/checkNormal.png"));
+		c2.setOverImg(new Image("./data/checkOver.png"));
+		c2.setCheckedImg(new Image("./data/checkChecked.png"));
+		c2.setClickedImg(new Image("./data/checkClicked.png"));
+		c2.setCheckedOverImg(new Image("./data/checkCheckedOver.png"));
+		c2.setCheckedClickedImg(new Image("./data/checkCheckedClicked.png"));
+
 		Checkbox c3 = new Checkbox((Fenetre) fenetre, 600, 200, this, "c3",
 				null, Checkbox.TXT_POS_LEFT);
-		c3.setNormalImg(new Image("./data/normal.png"));
-		c3.setOverImg(new Image("./data/over.png"));
-		c3.setCheckedImg(new Image("./data/click.png"));
-		c3.setClickedImg(new Image("./data/click.png"));
-		c3.setCheckedOverImg(new Image("./data/click.png"));
-		c3.setCheckedClickedImg(new Image("./data/click.png"));
+		c3.setNormalImg(new Image("./data/checkNormal.png"));
+		c3.setOverImg(new Image("./data/checkOver.png"));
+		c3.setCheckedImg(new Image("./data/checkChecked.png"));
+		c3.setClickedImg(new Image("./data/checkClicked.png"));
+		c3.setCheckedOverImg(new Image("./data/checkCheckedOver.png"));
+		c3.setCheckedClickedImg(new Image("./data/checkCheckedClicked.png"));
+
 		Checkbox c4 = new Checkbox((Fenetre) fenetre, 800, 200, this, "c4",
 				null, Checkbox.TXT_POS_RIGHT);
-		c4.setNormalImg(new Image("./data/normal.png"));
-		c4.setOverImg(new Image("./data/over.png"));
-		c4.setCheckedImg(new Image("./data/click.png"));
-		c4.setClickedImg(new Image("./data/click.png"));
-		c4.setCheckedOverImg(new Image("./data/click.png"));
-		c4.setCheckedClickedImg(new Image("./data/click.png"));
+		c4.setNormalImg(new Image("./data/checkNormal.png"));
+		c4.setOverImg(new Image("./data/checkOver.png"));
+		c4.setCheckedImg(new Image("./data/checkChecked.png"));
+		c4.setClickedImg(new Image("./data/checkClicked.png"));
+		c4.setCheckedOverImg(new Image("./data/checkCheckedOver.png"));
+		c4.setCheckedClickedImg(new Image("./data/checkCheckedClicked.png"));
 
 		this.addComponent(c1);
 		this.addComponent(c2);
 		this.addComponent(c3);
 		this.addComponent(c4);
+		// TEXTFIELDS
+		ChampTexte ct = new ChampTexte(fenetre,
+				fenetre.getGraphics().getFont(), 500, 500, 100, 25, this);
+		this.addComponent(ct);
+		ChampPassword pw = new ChampPassword(fenetre,
+				fenetre.getGraphics().getFont(), 800, 500, 100, 25, this);
+		this.addComponent(pw);
+		tf = new TextField(fenetre, fenetre.getGraphics().getFont(), 300, 300, 100, 25);
+	}
+	
+	@Override
+	public void render(GameContainer container, StateBasedGame jeu, Graphics g)
+			throws SlickException {
+		super.render(container, jeu, g);
+		tf.render(container, g);
+		
 	}
 
 	@Override

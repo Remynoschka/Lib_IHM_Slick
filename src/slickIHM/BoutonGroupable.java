@@ -11,26 +11,76 @@ import org.newdawn.slick.SlickException;
  * @author Remynoschka
  * 
  */
-public abstract class BoutonGroupable extends IHMComponent {
+public abstract class BoutonGroupable extends AbstractIHMComponent {
+	/**
+	 * Le bouton est il selectionne
+	 */
 	protected boolean		selected;
+	/**
+	 * Le groupe auquel appartien le bouton
+	 */
 	protected GroupeBoutons	groupe;
+	/**
+	 * L'action effectue a l'appui sur le bouton
+	 */
 	protected Action		action;
+	/**
+	 * Le texte sur ce bouton
+	 */
 	protected String		texte		= "";
-	protected boolean		pressed;
+	/**
+	 * La couleur du texte
+	 */
 	protected Color			texteColor	= Color.black;
+	/**
+	 * La police du texte
+	 */
 	protected Font			texteFont;
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param ecran
+	 * @throws SlickException
+	 */
 	public BoutonGroupable(Fenetre fenetre, int x, int y, int w, int h,
 			Ecran ecran) throws SlickException {
 		super(fenetre, x, y, w, h, ecran);
 	}
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param ecran
+	 * @param texte
+	 * @throws SlickException
+	 */
 	public BoutonGroupable(Fenetre fenetre, int x, int y, int w, int h,
 			Ecran ecran, String texte) throws SlickException {
 		super(fenetre, x, y, w, h, ecran);
 		this.texte = texte;
 	}
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param ecran
+	 * @param texte
+	 * @param a
+	 * @throws SlickException
+	 */
 	public BoutonGroupable(Fenetre fenetre, int x, int y, int w, int h,
 			Ecran ecran, String texte, Action a) throws SlickException {
 		super(fenetre, x, y, w, h, ecran);
@@ -64,6 +114,7 @@ public abstract class BoutonGroupable extends IHMComponent {
 	}
 
 	/**
+	 * Permet de savoir si le bouton est selectionne
 	 * 
 	 * @return true si le bouton est selectionne
 	 */
@@ -81,6 +132,7 @@ public abstract class BoutonGroupable extends IHMComponent {
 	}
 
 	/**
+	 * Renvoi le groupe de boutons auquel appartient ce bouton
 	 * 
 	 * @return le groupe de boutons auquel appartient ce bouton
 	 */
@@ -110,6 +162,7 @@ public abstract class BoutonGroupable extends IHMComponent {
 	}
 
 	/**
+	 * Renvoi l'action associe au bouton
 	 * 
 	 * @return l'action associe au bouton
 	 */

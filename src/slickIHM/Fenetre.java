@@ -9,7 +9,6 @@ import main.Jeu;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.GameState;
 
 /**
  * La fenetre du jeu
@@ -17,12 +16,23 @@ import org.newdawn.slick.state.GameState;
  * @author Remynoschka
  */
 public class Fenetre extends AppGameContainer {
-	public static Fenetre				FENETRE;
+	/**
+	 * Variable globale contenant la fenetre du jeu
+	 */
+	private static Fenetre				INSTANCE;
+	/**
+	 * Les informations sur le(s) moniteur(s)
+	 */
 	public static final ConfigMonitors	config	= ConfigMonitors
 														.getConfiguration();
 
 	/**
-	 * Creates new form Fenetre
+	 * Cree une nouvelle fenetre
+	 * 
+	 * @param game
+	 * @param width
+	 * @param height
+	 * @throws SlickException
 	 */
 	private Fenetre(Game game, int width, int height) throws SlickException {
 		super(game, width, height, true);
@@ -30,18 +40,19 @@ public class Fenetre extends AppGameContainer {
 	}
 
 	/**
+	 * Permet d'avoir l'ecran actuellement affiche
 	 * 
 	 * @return l'Ecran actuellement visible
 	 */
-	public GameState getVueActuelle() {
-		return Jeu.INSTANCE.getCurrentState();
+	public Ecran getVueActuelle() {
+		return (Ecran) Jeu.INSTANCE.getCurrentState();
 	}
 
 	/**
 	 * Change la vue affichee dans la fenetre
 	 * 
 	 * @param idState
-	 *            : l'id d'un GameState representant cette vue
+	 *            : l'id de l'Ecran representant cette vue
 	 * @return l'id de l'etat que l'on quitte
 	 */
 	public int changerVueActuelle(int idState) {
@@ -51,26 +62,23 @@ public class Fenetre extends AppGameContainer {
 	}
 
 	/**
-	 * @param args
-	 *            the command line arguments
+	 * Permet d'avoir la fenetre du jeu. En cree une s'il n'y en a pas
+	 * 
+	 * @return la fenetre du jeu
+	 * @throws SlickException
 	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Fenetre.FENETRE = new Fenetre(Jeu.INSTANCE, ConfigMonitors
-							.getGraphicsDevice().getDisplayMode().getWidth(),
-							ConfigMonitors.getGraphicsDevice().getDisplayMode()
-									.getHeight());
-
-					FENETRE.start();
-
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
+	public static Fenetre getInstance(){
+		if (INSTANCE == null) {
+			try {
+				INSTANCE = new Fenetre(Jeu.INSTANCE, ConfigMonitors
+						.getGraphicsDevice().getDisplayMode().getWidth(),
+						ConfigMonitors.getGraphicsDevice().getDisplayMode()
+								.getHeight());
+			} catch (SlickException e) {
+				e.printStackTrace();
 			}
-		});
+		}
+		return INSTANCE;
 	}
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	// End of variables declaration//GEN-END:variables
+
 }

@@ -7,8 +7,8 @@ import java.util.List;
  * de contenir des elements d'interface graphique (en dehors de la fenetre). Ces
  * elements doivent etre contenus sous forme de liste. Pensez egalement a faire
  * la methode de rendu <br/>
- * Attention, les elements sont places en coordonnees relatives a leur
- * conteneur lorsqu'ils sont ajoutes a celui-ci.
+ * Attention, les elements sont places en coordonnees relatives a leur conteneur
+ * lorsqu'ils sont ajoutes a celui-ci.
  * 
  * @author Remynoschka
  * 
@@ -42,5 +42,12 @@ public interface IHMConteneur {
 	public int getWidth();
 
 	public int getHeight();
+
+	/**
+	 * Permet de savoir si l'un des composants fils a le focus
+	 * 
+	 * @return true si un composant fils a le focus
+	 */
+	public boolean someoneHasFocus();
 
 }

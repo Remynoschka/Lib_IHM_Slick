@@ -8,38 +8,87 @@ import org.newdawn.slick.gui.GUIContext;
 
 /**
  * Cette classe cree un Toggle Button qui permet d'etre dans un groupe de
- * boutons dont 1 seul peut etre selectionne
+ * boutons dont 1 seul peut etre selectionne.
  * 
  * @author Remynoschka
  * 
  */
 public class ToggleBouton extends BoutonGroupable {
-	// TODO peut mieux faire
+	// TODO On peut ameliorer la taille des ToggleBoutons
+	/**
+	 * Largeur des boutons prochainement crees
+	 */
 	private static int	WIDTH	= 100;
+	/**
+	 * Hauteur des boutons prochainement crees
+	 */
 	private static int	HEIGHT	= 50;
 
+	/**
+	 * Image quand le bouton est active
+	 */
 	private Image		imageDown;
+
+	/**
+	 * Image quand les bouton n'est pas active
+	 */
 	private Image		imageUp;
+
+	/**
+	 * Image quand la souris passe au dessus du bouton quand il n'est pas active
+	 */
 	private Image		imageUpOver;
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param ecran
+	 * @throws SlickException
+	 */
 	public ToggleBouton(Fenetre fenetre, int x, int y, Ecran ecran)
 			throws SlickException {
 		super(fenetre, x, y, WIDTH, HEIGHT, ecran);
 		texteFont = fenetre.getGraphics().getFont();
 	}
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param ecran
+	 * @param texte
+	 * @throws SlickException
+	 */
 	public ToggleBouton(Fenetre fenetre, int x, int y, Ecran ecran, String texte)
 			throws SlickException {
 		super(fenetre, x, y, WIDTH, HEIGHT, ecran, texte);
 		texteFont = fenetre.getGraphics().getFont();
 	}
 
+	/**
+	 * 
+	 * @param fenetre
+	 * @param x
+	 * @param y
+	 * @param ecran
+	 * @param texte
+	 * @param a
+	 * @throws SlickException
+	 */
 	public ToggleBouton(Fenetre fenetre, int x, int y, Ecran ecran,
 			String texte, Action a) throws SlickException {
 		super(fenetre, x, y, WIDTH, HEIGHT, ecran, texte, a);
 		texteFont = fenetre.getGraphics().getFont();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.BoutonGroupable#deselectionner()
+	 */
 	@Override
 	public void deselectionner() {
 		super.deselectionner();
@@ -48,6 +97,11 @@ public class ToggleBouton extends BoutonGroupable {
 		setMouseDownImage(imageDown);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.BoutonGroupable#selectionner()
+	 */
 	@Override
 	public void selectionner() {
 		if (!selected) {
@@ -72,6 +126,7 @@ public class ToggleBouton extends BoutonGroupable {
 	}
 
 	/**
+	 * Permet de savoir la largeur des boutons prochainement crees
 	 * 
 	 * @return la largeur des boutons
 	 */
@@ -80,6 +135,7 @@ public class ToggleBouton extends BoutonGroupable {
 	}
 
 	/**
+	 * Permet de savoir la hauter des boutons prochainement crees
 	 * 
 	 * @return la hauteur des boutons
 	 */
@@ -87,6 +143,13 @@ public class ToggleBouton extends BoutonGroupable {
 		return HEIGHT;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * slickIHM.AbstractIHMComponent#doRender(org.newdawn.slick.gui.GUIContext,
+	 * org.newdawn.slick.Graphics)
+	 */
 	@Override
 	public void doRender(GUIContext fenetre, Graphics g) {
 		super.doRender(fenetre, g);
@@ -163,7 +226,11 @@ public class ToggleBouton extends BoutonGroupable {
 		}
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.AbstractIHMComponent#actionMouseClicked(int, int, int, int)
+	 */
 	@Override
 	public void actionMouseClicked(int button, int x, int y, int clickCount) {
 		if (!selected) {

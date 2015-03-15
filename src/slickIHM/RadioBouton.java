@@ -4,7 +4,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * Classe permettant de faire des Boutons Radio.
+ * Classe permettant de faire des Boutons Radio. Leur comportement est similaire
+ * a celui des ToggleBouton
  * 
  * @author Remynoschka
  * 
@@ -112,6 +113,11 @@ public class RadioBouton extends BoutonTxtAlignable {
 		HEIGHT = h;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.BoutonGroupable#selectionner()
+	 */
 	@Override
 	public void selectionner() {
 		if (!selected) {
@@ -131,10 +137,14 @@ public class RadioBouton extends BoutonTxtAlignable {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see slickIHM.BoutonGroupable#deselectionner()
+	 */
 	@Override
 	public void deselectionner() {
 		if (selected) {
-			System.out.println("deselectionne");
 			setNormalImage(normalImg);
 			setMouseOverImage(overImg);
 			setMouseDownImage(clickedImg);

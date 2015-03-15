@@ -3,7 +3,6 @@ package slickIHM;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Cette classe permet d'assembler des BoutonGroupable au sein des meme groupe
  * afin qu'ils aient des comportements lies
@@ -12,6 +11,9 @@ import java.util.List;
  * 
  */
 public class GroupeBoutons {
+	/**
+	 * Les boutons du groupe
+	 */
 	private List<BoutonGroupable>	boutons;
 
 	public GroupeBoutons() {
@@ -32,12 +34,13 @@ public class GroupeBoutons {
 		this.boutons.add(bouton);
 		bouton.setGroupe(this);
 	}
-	
+
 	/**
+	 * Permet d'obtenir les boutons du groupe
 	 * 
 	 * @return les boutons dans le groupe
 	 */
-	public List<BoutonGroupable> getBoutons(){
+	public List<BoutonGroupable> getBoutons() {
 		return boutons;
 	}
 
