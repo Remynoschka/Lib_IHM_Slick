@@ -4,8 +4,6 @@
  */
 package slickIHM;
 
-import main.TestJeu;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.SlickException;
@@ -46,7 +44,7 @@ public class Fenetre extends AppGameContainer {
 	 * @return l'Ecran actuellement visible
 	 */
 	public Ecran getVueActuelle() {
-		return (Ecran) TestJeu.INSTANCE.getCurrentState();
+		return (Ecran) ((StateBasedGame) this.game).getCurrentState();
 	}
 
 	/**
