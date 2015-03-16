@@ -3,7 +3,6 @@ package slickIHM;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.TestMain;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -120,8 +119,6 @@ public abstract class Popup extends AbstractIHMComponent implements
 		if (isEnabled())
 			if (isMouseOver())
 				super.actionMouseClicked(button, x, y, clickCount);
-			else if (TestMain.DEBUG)
-				System.out.println("Clic out of Popup");
 	}
 
 	/*
@@ -134,8 +131,6 @@ public abstract class Popup extends AbstractIHMComponent implements
 		if (isEnabled())
 			if (mouseInside(mx, my))
 				super.actionMousePressed(button, mx, my);
-			else if (TestMain.DEBUG)
-				System.out.println("Pressed out of Popup");
 	}
 
 	/*
@@ -148,8 +143,6 @@ public abstract class Popup extends AbstractIHMComponent implements
 		if (isEnabled())
 			if (isMouseOver())
 				super.actionMouseReleased(button, mx, my);
-			else if (TestMain.DEBUG)
-				System.out.println("Released out of Popup");
 	}
 
 	/**
@@ -159,8 +152,6 @@ public abstract class Popup extends AbstractIHMComponent implements
 	 *            : l'ecran dans lequel est affichee la popup
 	 */
 	public void close(Ecran ecran) {
-		if (TestMain.DEBUG)
-			System.out.println("Close Popup");
 		this.disable();
 		this.setVisible(false);
 		ecran.removeComponent(this);
@@ -174,8 +165,6 @@ public abstract class Popup extends AbstractIHMComponent implements
 	 */
 	public void show(Ecran ecran) {
 		this.disable();
-		if (TestMain.DEBUG)
-			System.out.println("Show Popup");
 		this.setVisible(true);
 		this.enable();
 		ecran.addComponent(this);

@@ -5,7 +5,6 @@ import org.newdawn.slick.SlickException;
 import slickIHM.Fenetre;
 
 public class TestMain {
-	public static final boolean	DEBUG	= false;
 
 	/**
 	 * @param args
