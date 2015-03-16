@@ -8,13 +8,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import test.EcranTest1;
 
-public class Jeu extends StateBasedGame {
-	public static final Jeu			INSTANCE		= new Jeu();
+public class TestJeu extends StateBasedGame {
+	public static final TestJeu			INSTANCE		= new TestJeu();
 	public static UnicodeFont		FONT;
 	public static UnicodeFont		LOW_FONT;
 	public static final ColorEffect	COLOR_EFFECT	= new ColorEffect();
 
-	private Jeu() {
+	private TestJeu() {
 		super("MyLib_IHM");
 	}
 
@@ -39,7 +39,7 @@ public class Jeu extends StateBasedGame {
 		LOW_FONT = new UnicodeFont("./data/fonts/times.ttf", 15, false, false);
 		LOW_FONT.addAsciiGlyphs();
 		LOW_FONT.addGlyphs(400, 600);
-		LOW_FONT.getEffects().add(Jeu.COLOR_EFFECT);
+		LOW_FONT.getEffects().add(TestJeu.COLOR_EFFECT);
 		LOW_FONT.loadGlyphs();
 	}
 

@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 import slickIHM.Fenetre;
 
-public class Main {
+public class TestMain {
 	public static final boolean	DEBUG	= false;
 
 	/**
@@ -15,8 +15,8 @@ public class Main {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
-					Fenetre.getInstance().start();
+
+					Fenetre.newInstance(TestJeu.INSTANCE).start();
 
 				} catch (SlickException e) {
 					e.printStackTrace();

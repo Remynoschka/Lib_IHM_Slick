@@ -4,11 +4,12 @@
  */
 package slickIHM;
 
-import main.Jeu;
+import main.TestJeu;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * La fenetre du jeu
@@ -45,7 +46,7 @@ public class Fenetre extends AppGameContainer {
 	 * @return l'Ecran actuellement visible
 	 */
 	public Ecran getVueActuelle() {
-		return (Ecran) Jeu.INSTANCE.getCurrentState();
+		return (Ecran) TestJeu.INSTANCE.getCurrentState();
 	}
 
 	/**
@@ -56,24 +57,34 @@ public class Fenetre extends AppGameContainer {
 	 * @return l'id de l'etat que l'on quitte
 	 */
 	public int changerVueActuelle(int idState) {
-		int leave = Jeu.INSTANCE.getCurrentStateID();
-		Jeu.INSTANCE.enterState(idState);
+		int leave = ((StateBasedGame) this.game).getCurrentStateID();
+		((StateBasedGame) this.game).enterState(idState);
 		return leave;
 	}
 
 	/**
-	 * Permet d'avoir la fenetre du jeu. En cree une s'il n'y en a pas
+	 * Permet d'avoir la fenetre du jeu.
 	 * 
-	 * @return la fenetre du jeu
+	 * @return la fenetre du jeu, null si aucune n'a ete cree
 	 * @throws SlickException
 	 */
-	public static Fenetre getInstance(){
+	public static Fenetre getInstance() {
+		return INSTANCE;
+	}
+
+	/**
+	 * Permet d'avoir la fenetre du jeu. En cree une si aucune n'existe
+	 * 
+	 * @param jeu
+	 *            la fenetre du jeu
+	 * @return
+	 */
+	public static Fenetre newInstance(StateBasedGame jeu) {
 		if (INSTANCE == null) {
 			try {
-				INSTANCE = new Fenetre(Jeu.INSTANCE, ConfigMonitors
-						.getGraphicsDevice().getDisplayMode().getWidth(),
-						ConfigMonitors.getGraphicsDevice().getDisplayMode()
-								.getHeight());
+				INSTANCE = new Fenetre(jeu, ConfigMonitors.getGraphicsDevice()
+						.getDisplayMode().getWidth(), ConfigMonitors
+						.getGraphicsDevice().getDisplayMode().getHeight());
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
